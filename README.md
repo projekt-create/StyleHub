@@ -1,6 +1,6 @@
 # Logo
 
-![Logo] (/logo.png)
+ [Logo](/logo.png)
 
 # StyleHub
 
@@ -53,5 +53,15 @@ npm run dev
 
 ##  Author
 
-**Husan Haydarov**# StyleHub
-# StyleHub
+**Husan Haydarov**
+
+##  Documentation
+
+## 📚 Documentation
+
+- 📁 [Project Structure](docs/project-structure.md)
+- 🔐 [Authentication](docs/auth.md)
+- 🛍️ [Products](docs/products.md)
+- 👤 [Users](docs/users.md)
+- 👤 [Profile](docs/profile.md)
+- 🚀 [Deployment](docs/deployment.md)
