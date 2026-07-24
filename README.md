@@ -55,8 +55,6 @@ npm run dev
 
 **Husan Haydarov**
 
-##  Documentation
-
 ## 📚 Documentation
 
 - 📁 [Project Structure](docs/project-structure.md)
