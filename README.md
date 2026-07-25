@@ -63,3 +63,4 @@ npm run dev
 - 👤 [Users](docs/users.md)
 - 👤 [Profile](docs/profile.md)
 - 🚀 [Deployment](docs/deployment.md)
+- 🤖 [AI](docs/useAI.md)

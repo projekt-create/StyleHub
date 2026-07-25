@@ -107,7 +107,7 @@ Authentication System
 
 Status
 
-⬜ Planned
+✅ Completed
 
 ---
 

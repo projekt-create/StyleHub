@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Productviwe = () => {
+const productViweSlug = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Productviwe = () => {
   )
 }
 
-export default Productviwe
+export default productViweSlug

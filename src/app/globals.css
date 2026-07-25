@@ -1,2 +1,24 @@
 @import "tailwindcss";
 
+:root {
+  --bg: #010f1d;
+  --bg-card: #ffffff;
+
+  --text: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --placeholder: #9ca3af;
+  --white: #ffffff;
+
+  --primary: #104bb9;
+  --primary-hover: #053f96;
+  --primary-dark: #03367a;
+
+  --border: #d1d5db;
+  --border-light: #d1fae5;
+
+  --icon: #0058cc;
+  --icon-secondary: #9ca3af;
+
+  --ring: #104bb9;
+}
