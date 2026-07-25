@@ -1,3 +1,6 @@
+import { GlobalProviders } from "@/providers/GlobalProviders";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
 export const metadata = {
@@ -12,7 +15,13 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <GlobalProviders>
+          {children}
+          <ToastContainer position="top-right" autoClose={2000} />
+        </GlobalProviders>
+      </body>
     </html>
   );
 }
+
