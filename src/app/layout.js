@@ -2,6 +2,7 @@ import { GlobalProviders } from "@/providers/GlobalProviders";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
+import "../components/saiidbar/sidebar.css";
 
 export const metadata = {
   title: "StyleHub | Premium Fashion & Clothing Store",
@@ -24,4 +25,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
