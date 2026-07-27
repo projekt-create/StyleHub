@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #010f1d;
+  --bg: #f8fafc;
   --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-hover: #f3f4f6;
+  --shadow: rgba(15, 23, 42, 0.08);
 
   --text: #111827;
   --text-secondary: #374151;
@@ -22,3 +25,72 @@
 
   --ring: #104bb9;
 }
+
+[data-theme="dark"] {
+  --bg: #07111f;
+  --bg-card: #101d2d;
+  --bg-sidebar: #0b1726;
+  --bg-hover: #17263a;
+  --shadow: rgba(0, 0, 0, 0.24);
+
+  --text: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --placeholder: #64748b;
+  --border: #26374c;
+  --border-light: #1d3344;
+  --icon-secondary: #94a3b8;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-theme {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.not-found-page {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.not-found-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px var(--shadow);
+  max-width: 480px;
+  padding: 48px 32px;
+  text-align: center;
+  width: 100%;
+}
+
+.not-found-icon {
+  align-items: center;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 50%;
+  color: var(--primary);
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  margin: 0 auto 20px;
+  width: 64px;
+}
+
+.not-found-icon svg { height: 32px; width: 32px; }
+.not-found-code { color: var(--primary); font-size: 64px; font-weight: 800; line-height: 1; margin: 0 0 12px; }
+.not-found-card h1 { color: var(--text); font-size: 26px; margin: 0 0 10px; }
+.not-found-message { color: var(--text-muted); margin: 0 auto 28px; }
+.not-found-button { align-items: center; background: var(--primary); border: 0; border-radius: 10px; color: var(--white); cursor: pointer; display: inline-flex; font-size: 14px; font-weight: 600; gap: 8px; padding: 12px 18px; transition: background .2s ease, transform .2s ease; }
+.not-found-button:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.not-found-button:disabled { cursor: wait; opacity: .65; transform: none; }
+.not-found-button svg { height: 18px; width: 18px; }

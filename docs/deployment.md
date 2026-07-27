@@ -142,20 +142,6 @@ Status
 
 ---
 
-## Stage 6
-
-Wishlist
-
-- Add to Wishlist
-- Remove from Wishlist
-- Sync Data
-
-Status
-
-⬜ Planned
-
----
-
 ## Stage 7
 
 User Profile
@@ -180,22 +166,7 @@ Dashboard
 
 Status
 
-⬜ Planned
-
----
-
-## Stage 9
-
-Animations
-
-- GSAP
-- Lenis
-- SplitType
-- Typed.js
-
-Status
-
-⬜ Planned
+✅ Completed
 
 ---
 

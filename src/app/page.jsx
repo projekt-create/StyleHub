@@ -1,11 +1,5 @@
-import React from 'react'
+import DashboardContent from "@/components/dashboard/DashboardContent";
 
-const page = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+export default function DashboardPage() {
+  return <DashboardContent />;
 }
-
-export default page

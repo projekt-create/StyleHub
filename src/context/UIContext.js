@@ -47,13 +47,17 @@ export function UIProvider({ children }) {
         sidebarOpen,
         setSidebarOpen,
         toggleSidebar,
+        theme,
+        toggleTheme,
         modalOpen,
         modalData,
         openModal,
         closeModal,
       }}
     >
-      {children}
+      <div className="app-theme" data-theme={theme}>
+        {children}
+      </div>
     </UIContext.Provider>
   );
 }
