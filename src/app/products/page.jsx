@@ -59,7 +59,7 @@ export default function ProductsPage() {
       <SaidBar />
       <main className="ml-[68px] min-h-screen p-4 sm:p-8">
         <header className="mx-auto mb-7 flex max-w-[1440px] flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div><p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">StyleHub boshqaruvi</p><h1 className="text-3xl font-extrabold tracking-tight text-[var(--text)]">Mahsulotlar katalogi</h1><p className="mt-2 text-sm text-[var(--text-muted)]">Mahsulotlarni qidiring, saralang va boshqaring.</p></div>
+          <div><h1 className="text-3xl font-extrabold tracking-tight text-[var(--text)]">Products</h1></div>
           <Link href="/products/new" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-3 text-sm font-bold text-white transition hover:bg-[var(--primary-hover)]"><HiOutlinePlus className="text-lg" /> Yangi mahsulot</Link>
         </header>
 
