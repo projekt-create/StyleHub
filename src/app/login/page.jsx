@@ -14,6 +14,7 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const router = useRouter();
   const { login } = useAuth();
@@ -21,13 +22,15 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.trim(),
     });
+    if (errorMessage) setErrorMessage('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMessage('');
 
     try {
       await login(formData.username, formData.password);
@@ -35,12 +38,20 @@ const Login = () => {
       toast.success("Muvaffaqiyatli tizimga kirdingiz!");
       router.replace("/dashboard");
     } catch (error) {
-      const errorMessage =
+      const rawMsg =
         error.response?.data?.message ||
+        error.response?.data?.error ||
         error.message ||
         "Tizimga kirishda xatolik yuz berdi. Username va parolni tekshiring.";
 
-      toast.error(errorMessage);
+      const formattedMsg = Array.isArray(rawMsg)
+        ? rawMsg.join(", ")
+        : typeof rawMsg === 'object'
+        ? JSON.stringify(rawMsg)
+        : rawMsg;
+
+      setErrorMessage(formattedMsg);
+      toast.error(formattedMsg);
     } finally {
       setLoading(false);
     }
@@ -59,6 +70,12 @@ const Login = () => {
             Kirish uchun
           </p>
         </div>
+
+        {errorMessage && (
+          <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm font-medium text-center">
+            {errorMessage}
+          </div>
+        )}
 
         <form
           className="mt-8 space-y-6"
