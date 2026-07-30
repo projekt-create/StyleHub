@@ -1,23 +1,22 @@
 import { NextResponse } from "next/server";
 
-// Himoyalangan yo'llar (dastlabki root bo'lgan '/' yo'lini ham qo'shdik)
+// Himoyalangan yo'llar
 const protectedRoutes = ["/", "/dashboard", "/profile"];
 
-// Proxy funksiyasi (Next.js 16+ da middleware o'rniga proxy ishlatiladi)
+// Proxy funksiyasi 
 export function proxy(request) {
   const { pathname } = request.nextUrl;
   const accessToken = request.cookies.get("accessToken")?.value;
 
   // Path himoyalanganmi yoki yo'qligini tekshiramiz
-  // Agarda pathname to'liq '/' bo'lsa yoki boshqa himoyalangan yo'llar bilan boshlansa
   const isProtectedRoute = protectedRoutes.some((route) =>
     route === "/" ? pathname === "/" : pathname.startsWith(route)
   );
 
-  // Token yo'q bo'lsa va foydalanuvchi himoyalangan sahifaga (xususan asosiy sahifaga) kirmoqchi bo'lsa kira olmaydi
+  // Token yo'q bo'lsa va foydalanuvchi himoyalangan sahifaga kirmoqchi bo'lsa kira olmaydi
   if (isProtectedRoute && !accessToken) {
     const loginUrl = new URL("/login", request.url);
-    // loginUrl.searchParams.set("redirect", pathname); // agar redirect kerak bo'lsa
+    // loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
