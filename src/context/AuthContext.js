@@ -84,9 +84,17 @@ export function AuthProvider({ children }) {
     } catch (err) {
 
       // backenddan kelgan xatolikni oladi
-      const message =
+      const rawMessage =
         err.response?.data?.message ||
+        err.response?.data?.error ||
+        err.message ||
         "Login yoki parol noto'g'ri";
+
+      const message = Array.isArray(rawMessage)
+        ? rawMessage.join(", ")
+        : typeof rawMessage === "object"
+        ? JSON.stringify(rawMessage)
+        : rawMessage;
 
       setError(message);
 

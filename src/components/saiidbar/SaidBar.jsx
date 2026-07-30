@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { UIContext } from "@/context/UIContext";
@@ -23,7 +23,7 @@ const navLinks = [
   { href: "/doc", label: "Dokumentatsiya", icon: HiOutlineCog6Tooth },
 ];
 
-const SaidBar = () => {
+const SaidBar = ({ SetSaidbarOpen }) => {
   const [expanded, setExpanded] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
   const { theme, toggleTheme } = useContext(UIContext);
@@ -31,6 +31,11 @@ const SaidBar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    SetSaidbarOpen?.(expanded);
+  }, [expanded, SetSaidbarOpen]);
+
 
   const handleMouseEnter = () => setExpanded(true);
   const handleMouseLeave = () => setExpanded(false);
