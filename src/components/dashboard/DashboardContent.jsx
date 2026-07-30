@@ -75,7 +75,7 @@ export default function DashboardContent() {
             <ResponsiveContainer width="100%" height={350}><BarChart data={chartData}><CartesianGrid stroke="var(--border)" strokeDasharray="4 4" vertical={false} /><XAxis dataKey="name" stroke="var(--text-muted)" tick={{ fill: "var(--text-muted)" }} /><YAxis stroke="var(--text-muted)" tick={{ fill: "var(--text-muted)" }} /><Tooltip contentStyle={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "10px", color: "var(--text)" }} /><Bar dataKey="total" fill="var(--primary)" radius={[8, 8, 0, 0]} /></BarChart></ResponsiveContainer>
           </section>
           <section className={cardClass}>
-            <div className="mb-2"><p className="text-[11px] font-bold uppercase tracking-wider text-[var(--primary)]">Taqsimot</p><h2 className="mt-1 text-lg font-bold text-[var(--text)]">Platforma tarkibi</h2></div>
+            <div className="mb-2"><p className="text-[11px] font-bold uppercase tracking-wider text-(--primary)">Taqsimot</p><h2 className="mt-1 text-lg font-bold text-[var(--text)]">Platforma tarkibi</h2></div>
             <ResponsiveContainer width="100%" height={350}><PieChart><Pie data={pieData} dataKey="value" nameKey="name" outerRadius={120} label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>{pieData.map((entry, index) => <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />)}</Pie><Tooltip contentStyle={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "10px", color: "var(--text)" }} /></PieChart></ResponsiveContainer>
           </section>
         </div>
