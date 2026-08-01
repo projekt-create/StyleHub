@@ -38,7 +38,7 @@ export default function ProductDetailPage() {
   const removeProduct = async () => {
     if (!confirm("Haqiqatan ham ushbu mahsulotni o‘chirmoqchimisiz?")) return;
     await ProductService.remove(product.id);
-    router.push("/products");
+    window.location.replace("/products");
   };
 
   return (

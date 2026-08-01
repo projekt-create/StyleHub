@@ -105,10 +105,10 @@ export default function DashboardContent() {
     );
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
+    <div className="min-h-screen relative bg-[var(--bg)] text-[var(--text)]">
       <SaidBar SetSaidbarOpen={setSidebarOpen} saidBarOpen={sidebarOpen} />
       <main
-        className={`min-h-screen p-4 pt-6 transition-[margin] duration-300 sm:p-8 ${sidebarOpen ? "ml-[68px] sm:ml-[240px]" : "ml-[68px]"}`}>
+        className={`min-h-screen absolute right-0 p-4 pt-6 transition-[margin] duration-300 sm:p-8`} style={{ width: sidebarOpen ? "calc(100% - 256px)" : "100%", transition: "width 0.3s" }}>
         <header className="mx-auto mb-7 flex max-w-[1440px] flex-col items-start justify-between gap-5 md:flex-row md:items-end">
           <div>
             <h1 className="text-[clamp(28px,4vw,38px)] font-extrabold leading-tight tracking-tight text-(--text)">
