@@ -34,7 +34,7 @@ export default function ProductForm({ product, editId }) {
     try {
       const result = editId ? await ProductService.update(editId, payload) : await ProductService.create(payload);
       const saved = result?.data || result;
-      router.push(saved?.slug ? `/products/${saved.slug}` : saved?.id ? `/products/${saved.id}` : "/products");
+      window.location.replace(saved?.slug ? `/products/${saved.slug}` : saved?.id ? `/products/${saved.id}` : "/products");
     } catch (error) {
       setErrorMessage(error?.response?.data?.message || "Saqlashda xatolik yuz berdi");
     } finally { setSaving(false); }
