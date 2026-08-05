@@ -211,18 +211,6 @@ export default function UsersPage() {
       <SaidBar />
       <main className="ml-[68px] min-h-screen p-4 sm:p-8">
         <div className="mx-auto max-w-[1440px]">
-          <header className="mb-7">
-            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-              StyleHub boshqaruvi
-            </p>
-            <h1 className="text-3xl font-extrabold tracking-tight">
-              Foydalanuvchilar
-            </h1>
-            <p className="mt-2 text-sm text-[var(--text-muted)]">
-              Tizim foydalanuvchilarini boshqaring.
-            </p>
-          </header>
-
           <section className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-4 shadow-sm sm:p-6">
             <div className="mb-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
               <h2 className="flex items-center gap-2 text-lg font-bold">
@@ -287,9 +275,7 @@ export default function UsersPage() {
                           <td className="px-3 py-4">
                             <div className="flex items-center gap-3">
                               <div className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full bg-[var(--primary)]/15 font-bold text-[var(--primary)]">
-                                {user.avatar || user.image ? (
                                   <img src={user.avatar || user.image} alt="" className="h-full w-full object-cover" />
-                                ) : getInitials(user)}
                               </div>
                               <div>
                                 <p className="font-semibold">{getName(user)}</p>

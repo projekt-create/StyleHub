@@ -15,13 +15,10 @@ export default function DocPage() {
       <SaidBar />
       <main className="dashboard-content">
         <header className="dash-header">
-          <p className="dash-eyebrow">StyleHub tizim yo'riqnomasi</p>
           <h1 className="dash-title">Dokumentatsiya</h1>
-          <p className="dash-subtitle">API endpointlar va platforma infratuzilmasi haqida texnik hujjatlar.</p>
         </header>
 
         <div className="space-y-6 max-w-4xl">
-          {/* Base URL */}
           <div className="dash-table-section">
             <h2 className="dash-section-title flex items-center gap-2 mb-3">
               <HiOutlineServerStack className="text-[var(--primary)] text-xl" />
@@ -32,7 +29,6 @@ export default function DocPage() {
             </div>
           </div>
 
-          {/* Endpoints Table */}
           <div className="dash-table-section">
             <h2 className="dash-section-title flex items-center gap-2 mb-4">
               <HiOutlineCodeBracket className="text-[var(--primary)] text-xl" />
@@ -40,7 +36,6 @@ export default function DocPage() {
             </h2>
 
             <div className="space-y-3">
-              {/* Auth */}
               <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--bg)]">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-mono text-xs font-bold">POST</span>
@@ -49,13 +44,12 @@ export default function DocPage() {
                 <p className="text-xs text-[var(--text-muted)]">Foydalanuvchi logini. AccessToken va RefreshToken qaytaradi.</p>
               </div>
 
-              {/* Products */}
               <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--bg)]">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">GET</span>
                   <span className="font-mono text-sm font-bold text-[var(--text)]">/products</span>
                 </div>
-                <p className="text-xs text-[var(--text-muted)]">Mahsulotlar ro'yxatini olish. Query params: page, limit, search, categoryId, sortBy, order.</p>
+                <p className="text-xs text-[var(--text-muted)]">Mahsulotlar ro'yxatini olish.</p>
               </div>
 
               <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--bg)]">
@@ -66,13 +60,12 @@ export default function DocPage() {
                 <p className="text-xs text-[var(--text-muted)]">ID yoki slug bo'yicha yakka mahsulot ma'lumotlarini olish.</p>
               </div>
 
-              {/* Users */}
               <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--bg)]">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold">GET</span>
                   <span className="font-mono text-sm font-bold text-[var(--text)]">/users</span>
                 </div>
-                <p className="text-xs text-[var(--text-muted)]">Tizim foydalanuvchilari ro'yxatini olish (Admin huquqi talab etiladi).</p>
+                <p className="text-xs text-[var(--text-muted)]">Tizim foydalanuvchilari ro'yxatini olish.</p>
               </div>
             </div>
           </div>
