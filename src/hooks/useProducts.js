@@ -14,7 +14,7 @@ export function useProducts(customParams) {
   return useQuery({
     queryKey: ["products", params],
     queryFn: () => ProductService.getAll(params),
-    staleTime: 1000 * 60 * 2, // 2 min
+    staleTime: 1000 * 60 * 2,
     placeholderData: (previousData) => previousData,
   });
 }

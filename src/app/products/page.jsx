@@ -48,8 +48,19 @@ export default function ProductsPage() {
   const [sortBy, order] = sort.split("-");
   const { data: categoryData } = useCategories();
   const categories = Array.isArray(categoryData) ? categoryData : categoryData?.items || [];
-  const { data, isLoading, isError, error } = useProducts({ page, limit: PAGE_SIZE, search: search || undefined, categoryId: categoryId || undefined, sortBy, order });
-  const items = Array.isArray(data?.items) ? data.items : [];
+  const { data, isLoading, isError, error } = useProducts({ page, limit: PAGE_SIZE, sortBy, order });
+  const loadedItems = Array.isArray(data?.items) ? data.items : [];
+  const normalizedSearch = search.trim().toLowerCase();
+  const items = loadedItems.filter((product) => {
+    const matchesSearch = !normalizedSearch ||
+      [product.title, product.slug, product.category?.name]
+        .filter(Boolean)
+        .some((value) => String(value).toLowerCase().includes(normalizedSearch));
+    const matchesCategory = !categoryId ||
+      String(product.category?.id || product.categoryId) === String(categoryId);
+
+    return matchesSearch && matchesCategory;
+  });
   const meta = data?.meta || {};
   const totalPages = Math.max(Number(meta.totalPages) || 1, 1);
   const resetPage = (setter) => (event) => { setter(event.target.value); setPage(1); };
@@ -64,9 +75,21 @@ export default function ProductsPage() {
         </header>
 
         <section className="mx-auto mb-6 flex max-w-[1440px] flex-col gap-3 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-4 shadow-sm lg:flex-row">
-          <label className="relative flex-1"><HiOutlineMagnifyingGlass className="absolute left-3.5 top-1/2 -translate-y-1/2 text-lg text-[var(--icon-secondary)]" /><input value={search} onChange={resetPage(setSearch)} placeholder="Mahsulot nomini qidiring..." className={`${inputClass} w-full pl-10`} /></label>
-          <label className="flex items-center gap-2"><HiOutlineFunnel className="text-[var(--text-muted)]" /><select value={categoryId} onChange={resetPage(setCategoryId)} className={inputClass}><option value="">Barcha kategoriyalar</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select></label>
-          <label className="flex items-center gap-2"><HiOutlineArrowsUpDown className="text-[var(--text-muted)]" /><select value={sort} onChange={resetPage(setSort)} className={inputClass}><option value="createdAt-DESC">Eng yangilar</option><option value="price-ASC">Arzonidan boshlab</option><option value="price-DESC">Qimmatidan boshlab</option><option value="rating-DESC">Reyting bo‘yicha</option></select></label>
+          <label className="relative flex-1"><HiOutlineMagnifyingGlass className="absolute left-3.5 top-1/2 -translate-y-1/2 text-lg text-[var(--icon-secondary)]" />
+            <input value={search} onChange={resetPage(setSearch)} placeholder="Mahsulot nomini qidiring..." className={`${inputClass} w-full pl-10`} />
+          </label>
+          <label className="flex items-center gap-2"><HiOutlineFunnel className="text-[var(--text-muted)]" />
+            <select value={categoryId} onChange={resetPage(setCategoryId)} className={inputClass}>
+              <option value="">Barcha kategoriyalar</option>
+              {categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}
+            </select>
+          </label>
+          <label className="flex items-center gap-2"><HiOutlineArrowsUpDown className="text-[var(--text-muted)]" />
+            <select value={sort} onChange={resetPage(setSort)} className={inputClass}>
+              <option value="createdAt-DESC">Eng yangilar</option><option value="price-ASC">Arzonidan boshlab</option>
+              <option value="price-DESC">Qimmatidan boshlab</option><option value="rating-DESC">Reyting bo‘yicha</option>
+            </select>
+          </label>
         </section>
 
         <section className="mx-auto max-w-[1440px] rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-4 shadow-sm sm:p-6">
@@ -74,9 +97,20 @@ export default function ProductsPage() {
           {isError && <p className="py-16 text-center text-sm text-red-500">{error?.response?.data?.message || "Mahsulotlarni yuklashda xatolik yuz berdi."}</p>}
           {!isLoading && !isError && !items.length && <p className="py-16 text-center text-sm text-[var(--text-muted)]">Mos mahsulotlar topilmadi.</p>}
           {!isLoading && !isError && items.length > 0 && <>
-            <div className="mb-5 flex items-center justify-between"><p className="text-sm text-[var(--text-muted)]">Jami <b className="text-[var(--text)]">{meta.total ?? items.length}</b> ta mahsulot</p><span className="text-xs text-[var(--text-muted)]">{page} / {totalPages}-sahifa</span></div>
+            <div className="mb-5 flex items-center justify-between">
+              <p className="text-sm text-[var(--text-muted)]">Jami 
+                <b className="text-[var(--text)]">{meta.total ?? items.length}</b> ta mahsulot
+              </p>
+              <span className="text-xs text-[var(--text-muted)]">{page} / {totalPages}-sahifa</span>
+            </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{items.map((product) => <ProductCard key={product.id} product={product} />)}</div>
-            <div className="mt-6 flex items-center justify-between border-t border-[var(--border)] pt-4"><span className="text-xs text-[var(--text-muted)]">{page} / {totalPages}</span><div className="flex gap-2"><button disabled={page <= 1} onClick={() => setPage(page - 1)} className={`${inputClass} px-3 py-2 text-xs disabled:cursor-not-allowed disabled:opacity-40`}>Oldingi</button><button disabled={page >= totalPages} onClick={() => setPage(page + 1)} className={`${inputClass} px-3 py-2 text-xs disabled:cursor-not-allowed disabled:opacity-40`}>Keyingi</button></div></div>
+            <div className="mt-6 flex items-center justify-between border-t border-[var(--border)] pt-4">
+              <span className="text-xs text-[var(--text-muted)]">{page} / {totalPages}</span>
+              <div className="flex gap-2">
+                <button disabled={page <= 1} onClick={() => setPage(page - 1)} className={`${inputClass} px-3 py-2 text-xs disabled:cursor-not-allowed disabled:opacity-40`}>Oldingi</button>
+                <button disabled={page >= totalPages} onClick={() => setPage(page + 1)} className={`${inputClass} px-3 py-2 text-xs disabled:cursor-not-allowed disabled:opacity-40`}>Keyingi</button>
+              </div>
+            </div>
           </>}
         </section>
       </main>
