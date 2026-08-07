@@ -11,7 +11,7 @@ import {
 
 export default function DocPage() {
   return (
-    <div className="dashboard-layout">
+    <div className="dashboard-layout w-full min-h-screen">
       <SaidBar />
       <main className="dashboard-content">
         <header className="dash-header">
